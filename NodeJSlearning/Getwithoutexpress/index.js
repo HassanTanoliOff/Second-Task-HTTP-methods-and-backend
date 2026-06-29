@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
         if (myUrl.query.type === "json") {
             res.setHeader("Content-Type", "application/json");
 
-            let activeUsers = users.filter(u => u.isActive == true)
+            let activeUsers = users.filter((u) => u.isActive == true);
 
             res.write(JSON.stringify(activeUsers));
             return res.end();
@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
         if (myUrl.query.type === "html") {
             res.setHeader("Content-Type", "text/html");
             let html = ``;
-              let activeUsers = users.filter((u) => u.isActive == true);
+            let activeUsers = users.filter((u) => u.isActive == true);
             activeUsers.forEach((element) => {
                 html += `
             <table>
@@ -110,7 +110,7 @@ const server = http.createServer((req, res) => {
             res.end(JSON.stringify({ message: "User updated!!" }));
             return;
         });
-    } //// Body of Deleted
+    } //// Body of Delete
     else if (myUrl.pathname.startsWith("/users/") && method === "DELETE") {
         let id = parseInt(myUrl.pathname.split("/users/")[1]);
 
@@ -122,7 +122,7 @@ const server = http.createServer((req, res) => {
         }
         let userIndex = users.findIndex((u) => u.id == id);
         if (userIndex >= 0) {
-             users[userIndex].isActive = false;
+            users[userIndex].isActive = false;
         }
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ message: "User Deleted!!" }));
